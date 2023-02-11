@@ -1,2 +1,3 @@
 rootProject.name = "KuaiChuan"
 include ':app'
+include ':transmit'
