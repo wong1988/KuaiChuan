@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>快传--既时传</title>
+</head>
+<body style="width: 100%;height: 100%;background-color: #F1F2F3;box-sizing: border-box;display: flex;flex-direction: column;padding: 1.25rem;">
+<div style="width: 100%;display: flex;flex-direction: column;align-items: center;">
+    <div style="color: #191919;font-size: 2.5rem;margin-top:2rem;">这是快传的即时分享页面，</div>
+    <div style="color: #191919;font-size: 2.5rem;">您可以零流量下载 ta 分享的文件。</div>
+    <img src="{app_avatar}" style="width: 28%;height: 28%;margin: 1.875rem;"/>
+</div>
+<div style="background-color: #FFFFFF;width: 100%;border-radius: 1rem;">
+    <div style="font-size: 2.25rem;padding: 2.5rem;border-bottom: 1px solid;margin-bottom: 2.25rem;">
+        <span style="color: #0a58f6;">ta</span>
+        <span>分享了</span>
+        <span style="color: #0a58f6;">{file_count} </span>个文件
+    </div>
+    <div style="display: flex;flex-direction: column;width: 100%;box-sizing: border-box;">
+        {file_list_template}
+    </div>
+</div>
+</body>
+</html>
