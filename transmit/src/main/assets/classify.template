@@ -1,0 +1,11 @@
+        <div style="display: flex;flex-direction: column;box-sizing: border-box;width: 100%;">
+            <div style="font-size: 2rem;margin-left: 2.5rem;margin-right: 2.5rem;border-bottom: 1px solid;padding-bottom: 1.5rem;">
+                <span>{class_name}</span>
+                <span style="color: #0a58f6;">（ </span>
+                <span style="color: #0a58f6;">{class_count} </span>
+                <span style="color: #0a58f6;">） </span>
+            </div>
+            <div style="display: flex;flex-direction: column;box-sizing: border-box;width: 100%;padding-left: 2.5rem;padding-right: 2.5rem;margin-top: 2.5rem;">
+                {file_list}
+            </div>
+        </div>
