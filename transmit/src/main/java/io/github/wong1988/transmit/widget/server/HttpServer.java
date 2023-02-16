@@ -117,7 +117,7 @@ public class HttpServer {
             // 客户端请求地址 socket.getRemoteSocketAddress();
             InputStream is = socket.getInputStream();
             // 请求行(请求方式 + uri + http版本) 如：GET /assets/ic_logo.png HTTP/1.1
-            String requestLine = HttpInputStream.readLine(is);
+            String requestLine = readLine(is);
             Log.e("请求行", requestLine + "");
 
             if (requestLine != null) {
@@ -137,7 +137,7 @@ public class HttpServer {
             // Referer: http://192.168.43.1:3999/
             // Accept: gzip, deflate
             // Accept-Language: zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7
-            while ((header = HttpInputStream.readLine(is)) != null) {
+            while ((header = readLine(is)) != null) {
                 String[] split = header.split(":");
                 if (split.length > 1) {
                     String headerKey = split[0];
@@ -159,5 +159,23 @@ public class HttpServer {
         if (resUriHandler != null)
             this.mResUriHandlerList.add(resUriHandler);
         return this;
+    }
+
+
+    /**
+     * 可客户端请求的流进行读写
+     */
+    private String readLine(InputStream is) throws IOException {
+
+        StringBuilder sb = new StringBuilder();
+        int a = 0, b = 0;
+        while ((b != -1) && !(a == '\r' && b == '\n')) {
+            a = b;
+            b = is.read();
+            sb.append((char) (b));
+        }
+
+        String line = sb.toString();
+        return line.equals("\r\n") ? null : line;
     }
 }
