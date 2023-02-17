@@ -5,7 +5,6 @@
                         <span style="color: #0a58f6;">{class_count} </span>
                         <span style="color: #0a58f6;">） </span>
                     </div>
-                    <div style="display: flex;flex-direction: column;box-sizing: border-box;width: 100%;padding-left: 2.5rem;padding-right: 2.5rem;margin-top: 2.5rem;">
-                        {file_list}
+                    <div style="display: flex;flex-direction: column;box-sizing: border-box;width: 100%;padding-left: 2.5rem;padding-right: 2.5rem;margin-top: 2.5rem;">{file_list}
                     </div>
                 </div>
