@@ -37,7 +37,7 @@ dependencies {
     compileOnly 'com.google.android.material:material:1.3.0'
 
     compileOnly 'com.github.wong1988:MediaCenter:1.0.2'
-    compileOnly 'com.github.wong1988:AndroidKit:1.1.6'
+    compileOnly 'com.github.wong1988:AndroidKit:1.1.8'
     compileOnly 'com.google.code.gson:gson:2.9.0'
 
 }
