@@ -26,6 +26,7 @@ import io.github.wong1988.transmit.widget.server.ResUriHandler;
 public class WebTransferHtmlHandler implements ResUriHandler {
 
     // 默认
+    public static String IMAGE_ERROR;
     public static String TRANSFER_LOGO;
     public static String APK_LOGO;
     public static String AUDIO_LOGO;
@@ -58,6 +59,7 @@ public class WebTransferHtmlHandler implements ResUriHandler {
             files = new ArrayList<>();
         this.mFiles = files;
 
+        IMAGE_ERROR = "http://192.168.43.1:" + port + "/assets/thumbnail_error.png";
         TRANSFER_LOGO = "http://192.168.43.1:" + port + "/assets/" + logo;
         APK_LOGO = "http://192.168.43.1:" + port + "/assets/apk_logo";
         AUDIO_LOGO = "http://192.168.43.1:" + port + "/assets/audio_logo";
