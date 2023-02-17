@@ -1,0 +1,12 @@
+                        <div style="display: flex;flex-direction: row;width: 100%;margin-bottom: 2.5rem;">
+                            <div style="flex-shrink: 1;width: 5.5rem;height: 5.5rem;position: relative;overflow: hidden;border-radius: 1rem;">
+                                <img src="{file_avatar}" style="width: {file_width};height:{file_height};position: absolute;left: 50%;top: 50%;transform-origin: left top;transform: translate(-50%, -50%);"  />
+                            </div>
+                            <div style="display: flex;flex-direction: column;width: 100%;box-sizing: border-box;padding-left: 1.25rem;justify-content: space-between;border-bottom: 1px solid #191919;padding-bottom:1.25rem;min-height: 6.875rem;width: calc(100% - 5.5rem)">
+                                <div style="font-size: 1.75rem;white-space: nowrap;text-overflow: ellipsis;width: calc(100% - 1rem);display: block;overflow: hidden;color: #191919;">{file_name}</div>
+                                <div style="display: flex;flex-direction: row;justify-content: space-between;">
+                                    <div style="font-size: 1.5rem;color: #666666;">{file_size}</div>
+                                    <a style="font-size: 1.5rem;color: #FFFFFF;background-color: #0a58f6;border-radius: 0.5rem;padding-left: 1rem;padding-right: 1rem;padding-top: 0.25rem;padding-bottom: 0.25rem;" href="{file_path}">下载</a>
+                                </div>
+                            </div>
+                        </div>
