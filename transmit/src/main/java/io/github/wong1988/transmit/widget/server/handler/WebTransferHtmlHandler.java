@@ -68,12 +68,12 @@ public class WebTransferHtmlHandler implements ResUriHandler {
         TXT_LOGO = "http://192.168.43.1:" + port + "/assets/txt_logo";
 
 
-        APK_PREFIX = "http://192.168.43.1:" + port + "/apk/";
-        IMAGE_PREFIX = "http://192.168.43.1:" + port + "/image/";
-        VIDEO_PREFIX = "http://192.168.43.1:" + port + "/video/";
-        AUDIO_PREFIX = "http://192.168.43.1:" + port + "/audio/";
-        DOCUMENT_PREFIX = "http://192.168.43.1:" + port + "/document/";
-        DOWNLOAD_PREFIX = "http://192.168.43.1:" + port + "/download/";
+        APK_PREFIX = "http://192.168.43.1:" + port + "/apk";
+        IMAGE_PREFIX = "http://192.168.43.1:" + port + "/image";
+        VIDEO_PREFIX = "http://192.168.43.1:" + port + "/video";
+        AUDIO_PREFIX = "http://192.168.43.1:" + port + "/audio";
+        DOCUMENT_PREFIX = "http://192.168.43.1:" + port + "/document";
+        DOWNLOAD_PREFIX = "http://192.168.43.1:" + port + "/download";
     }
 
     @Override
@@ -260,6 +260,7 @@ public class WebTransferHtmlHandler implements ResUriHandler {
 
             temp = temp.replaceAll("\\{file_name\\}", fileInfo.getFileName());
             temp = temp.replaceAll("\\{file_describe\\}", fileInfo.getDescribe());
+            // download + /storage/emulated/0/Music/Plastic_n_Ivory.mp3(文件地址)
             temp = temp.replaceAll("\\{file_path\\}", DOWNLOAD_PREFIX + fileInfo.getFilePath());
 
             MediaCenter.FileClassify fileType = fileInfo.getFileType();
