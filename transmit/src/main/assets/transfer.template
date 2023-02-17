@@ -20,8 +20,7 @@
                 <span>分享了</span>
                 <span style="color: #0a58f6;">{file_count} </span>个文件
             </div>
-            <div style="display: flex;flex-direction: column;width: 100%;box-sizing: border-box;">
-                {file_list_template}
+            <div style="display: flex;flex-direction: column;width: 100%;box-sizing: border-box;">{file_list_template}
             </div>
         </div>
     </body>
