@@ -112,6 +112,7 @@ public class WebTransferHtmlHandler implements ResUriHandler {
 
                 indexHtml = convert(indexHtml);
 
+                // 中文会进行转码
                 byte[] bytes = indexHtml.getBytes(StandardCharsets.UTF_8);
                 printStream.write(bytes);
 
