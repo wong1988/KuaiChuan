@@ -83,7 +83,6 @@ public class StorageApkImageResUriHandler implements ResUriHandler {
                     bitmap = bd.getBitmap();
                     baos = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-                    baos.flush();
                     printStream.println("Content-Length:" + baos.size());
                     printStream.println("Content-Type:application/octet-stream");
                     printStream.println();
