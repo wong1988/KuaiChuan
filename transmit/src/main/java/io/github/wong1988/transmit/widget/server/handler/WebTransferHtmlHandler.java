@@ -29,8 +29,6 @@ public class WebTransferHtmlHandler implements ResUriHandler {
     public static String APK_ERROR;
     public static String MUSIC_ERROR;
     public static String TRANSFER_LOGO;
-    public static String APK_LOGO;
-    public static String AUDIO_LOGO;
     public static String PDF_LOGO;
     public static String WORD_LOGO;
     public static String EXCEL_LOGO;
@@ -64,13 +62,11 @@ public class WebTransferHtmlHandler implements ResUriHandler {
         APK_ERROR = "apk_logo.png";
         MUSIC_ERROR = "audio_logo.png";
         TRANSFER_LOGO = "http://192.168.43.1:" + port + "/aimg/" + logo;
-        APK_LOGO = "http://192.168.43.1:" + port + "/aimg/apk_logo";
-        AUDIO_LOGO = "http://192.168.43.1:" + port + "/aimg/audio_logo";
-        PDF_LOGO = "http://192.168.43.1:" + port + "/aimg/pdf_logo";
-        WORD_LOGO = "http://192.168.43.1:" + port + "/aimg/word_logo";
-        EXCEL_LOGO = "http://192.168.43.1:" + port + "/aimg/excel_logo";
-        POWER_POINT_LOGO = "http://192.168.43.1:" + port + "/aimg/ppt_logo";
-        TXT_LOGO = "http://192.168.43.1:" + port + "/aimg/txt_logo";
+        PDF_LOGO = "http://192.168.43.1:" + port + "/aimg/pdf_logo.png";
+        WORD_LOGO = "http://192.168.43.1:" + port + "/aimg/word_logo.png";
+        EXCEL_LOGO = "http://192.168.43.1:" + port + "/aimg/excel_logo.png";
+        POWER_POINT_LOGO = "http://192.168.43.1:" + port + "/aimg/ppt_logo.png";
+        TXT_LOGO = "http://192.168.43.1:" + port + "/aimg/txt_logo.png";
 
 
         STORAGE_APK_PREFIX = "http://192.168.43.1:" + port + "/sapk";
