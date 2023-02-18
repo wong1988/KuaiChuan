@@ -58,7 +58,7 @@ public class WebTransferHtmlHandler implements ResUriHandler {
             files = new ArrayList<>();
         this.mFiles = files;
 
-        IMAGE_ERROR = "http://192.168.43.1:" + port + "/aimg/thumbnail_error.png";
+        IMAGE_ERROR = "thumbnail_error.png";
         TRANSFER_LOGO = "http://192.168.43.1:" + port + "/aimg/" + logo;
         APK_LOGO = "http://192.168.43.1:" + port + "/aimg/apk_logo";
         AUDIO_LOGO = "http://192.168.43.1:" + port + "/aimg/audio_logo";
