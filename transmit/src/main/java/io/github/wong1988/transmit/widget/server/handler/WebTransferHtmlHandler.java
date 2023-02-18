@@ -38,11 +38,11 @@ public class WebTransferHtmlHandler implements ResUriHandler {
 
     // 五大文件类型
     public static String APK_PREFIX;
-    public static String IMAGE_PREFIX;
+    public static String STORAGE_IMAGE_PREFIX;
     public static String VIDEO_PREFIX;
     public static String AUDIO_PREFIX;
     public static String DOCUMENT_PREFIX;
-    public static String DOWNLOAD_PREFIX;
+    public static String STORAGE_DOWNLOAD_PREFIX;
 
     private final List<FileInfo> mFiles;
 
@@ -71,11 +71,11 @@ public class WebTransferHtmlHandler implements ResUriHandler {
 
 
         APK_PREFIX = "http://192.168.43.1:" + port + "/apk";
-        IMAGE_PREFIX = "http://192.168.43.1:" + port + "/image";
+        STORAGE_IMAGE_PREFIX = "http://192.168.43.1:" + port + "/simg";
         VIDEO_PREFIX = "http://192.168.43.1:" + port + "/video";
         AUDIO_PREFIX = "http://192.168.43.1:" + port + "/audio";
         DOCUMENT_PREFIX = "http://192.168.43.1:" + port + "/document";
-        DOWNLOAD_PREFIX = "http://192.168.43.1:" + port + "/download";
+        STORAGE_DOWNLOAD_PREFIX = "http://192.168.43.1:" + port + "/sdownload";
     }
 
     @Override
@@ -264,7 +264,7 @@ public class WebTransferHtmlHandler implements ResUriHandler {
             temp = temp.replaceAll("\\{file_name\\}", fileInfo.getFileName());
             temp = temp.replaceAll("\\{file_describe\\}", fileInfo.getDescribe());
             // download + /storage/emulated/0/Music/Plastic_n_Ivory.mp3(文件地址)
-            temp = temp.replaceAll("\\{file_path\\}", DOWNLOAD_PREFIX + fileInfo.getFilePath());
+            temp = temp.replaceAll("\\{file_path\\}", STORAGE_DOWNLOAD_PREFIX + fileInfo.getFilePath());
 
             MediaCenter.FileClassify fileType = fileInfo.getFileType();
             if (MediaCenter.isApkFileType(fileType)) {
@@ -272,7 +272,7 @@ public class WebTransferHtmlHandler implements ResUriHandler {
                 temp = temp.replaceAll("\\{file_width\\}", "100%");
                 temp = temp.replaceAll("\\{file_height\\}", "100%");
             } else if (MediaCenter.isImageFileType(fileType)) {
-                temp = temp.replaceAll("\\{file_avatar\\}", IMAGE_PREFIX + fileInfo.getFilePath());
+                temp = temp.replaceAll("\\{file_avatar\\}", STORAGE_IMAGE_PREFIX + fileInfo.getFilePath());
                 temp = temp.replaceAll("\\{file_width\\}", fileInfo.getHeight() > fileInfo.getWidth() ? "100%" : "auto");
                 temp = temp.replaceAll("\\{file_height\\}", fileInfo.getHeight() > fileInfo.getWidth() ? "auto" : "100%");
             } else if (MediaCenter.isVideoFileType(fileType)) {
