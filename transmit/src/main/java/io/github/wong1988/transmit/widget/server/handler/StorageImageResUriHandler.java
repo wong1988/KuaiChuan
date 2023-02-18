@@ -19,20 +19,20 @@ import io.github.wong1988.transmit.widget.server.ResUriHandler;
  */
 public class StorageImageResUriHandler implements ResUriHandler {
 
-    public static final String IMAGE_PREFIX = "/simg";
+    private static final String STORAGE_IMAGE_PREFIX = "/simg";
 
     @Override
     public boolean matches(String uri) {
-        return uri.startsWith(IMAGE_PREFIX);
+        return uri.startsWith(STORAGE_IMAGE_PREFIX);
     }
 
     @Override
     public void handler(HttpRequest request) {
         String uri = request.getUri();
-        int indexOf = uri.indexOf(IMAGE_PREFIX);
+        int indexOf = uri.indexOf(STORAGE_IMAGE_PREFIX);
         String path = "";
         if (indexOf >= 0) {
-            indexOf += IMAGE_PREFIX.length();
+            indexOf += STORAGE_IMAGE_PREFIX.length();
             path = uri.substring(indexOf);
         }
 
