@@ -19,7 +19,7 @@ import io.github.wong1988.transmit.widget.server.ResUriHandler;
  */
 public class StorageImageResUriHandler implements ResUriHandler {
 
-    public static final String IMAGE_PREFIX = "/image";
+    public static final String IMAGE_PREFIX = "/simg";
 
     @Override
     public boolean matches(String uri) {
