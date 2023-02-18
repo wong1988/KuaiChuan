@@ -145,7 +145,7 @@ public class StorageApkImageResUriHandler implements ResUriHandler {
                     e.printStackTrace();
                 }
             }
-            // bitmap不能回收，刷新后就没了
+            // bitmap不能回收(因为drawable转的)，刷新后就没了
         }
     }
 
