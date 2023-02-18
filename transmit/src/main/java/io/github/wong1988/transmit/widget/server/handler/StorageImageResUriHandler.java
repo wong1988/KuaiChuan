@@ -14,7 +14,10 @@ import io.github.wong1988.kit.AndroidKit;
 import io.github.wong1988.transmit.widget.server.HttpRequest;
 import io.github.wong1988.transmit.widget.server.ResUriHandler;
 
-public class ImageResUriHandler implements ResUriHandler {
+/**
+ * 内部存储读取图片
+ */
+public class StorageImageResUriHandler implements ResUriHandler {
 
     public static final String IMAGE_PREFIX = "/image";
 
