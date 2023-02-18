@@ -213,6 +213,9 @@ public class WebTransferHtmlHandler implements ResUriHandler {
         if (files == null)
             files = new ArrayList<>();
 
+        if (files.size() == 0)
+            return "";
+
         if (classifyName == null)
             classifyName = "undefined";
 
