@@ -19,7 +19,7 @@ public class HttpServer {
     /**
      * 端口号
      */
-    private int mPort;
+    private final int mPort;
 
     /**
      * socket服务
