@@ -99,7 +99,7 @@ public class StorageApkImageResUriHandler implements ResUriHandler {
 
             if (loadNormalApkImage) {
                 // 图片预览失败显示默认的apk图
-                error = AndroidKit.getInstance().getAppContext().getAssets().open(WebTransferHtmlHandler.APK_LOGO);
+                error = AndroidKit.getInstance().getAppContext().getAssets().open(WebTransferHtmlHandler.APK_ERROR);
                 printStream.println("Content-Length:" + error.available());
                 printStream.println("Content-Type:application/octet-stream");
                 printStream.println();
@@ -145,8 +145,7 @@ public class StorageApkImageResUriHandler implements ResUriHandler {
                     e.printStackTrace();
                 }
             }
-            if (bitmap != null)
-                bitmap.recycle();
+            // bitmap不能回收，刷新后就没了
         }
     }
 
