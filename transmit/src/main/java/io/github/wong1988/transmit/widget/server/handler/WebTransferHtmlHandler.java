@@ -36,12 +36,12 @@ public class WebTransferHtmlHandler implements ResUriHandler {
     public static String POWER_POINT_LOGO;
     public static String TXT_LOGO;
 
-    // 五大文件类型
-    public static String APK_PREFIX;
+    // 预览图的前缀类型 + aimg（资源图片）
+    public static String STORAGE_APK_PREFIX;
     public static String STORAGE_IMAGE_PREFIX;
     public static String VIDEO_PREFIX;
     public static String AUDIO_PREFIX;
-    public static String DOCUMENT_PREFIX;
+    // 下载地址的前缀就此一种
     public static String STORAGE_DOWNLOAD_PREFIX;
 
     private final List<FileInfo> mFiles;
@@ -70,11 +70,10 @@ public class WebTransferHtmlHandler implements ResUriHandler {
         TXT_LOGO = "http://192.168.43.1:" + port + "/aimg/txt_logo";
 
 
-        APK_PREFIX = "http://192.168.43.1:" + port + "/apk";
+        STORAGE_APK_PREFIX = "http://192.168.43.1:" + port + "/sapk";
         STORAGE_IMAGE_PREFIX = "http://192.168.43.1:" + port + "/simg";
         VIDEO_PREFIX = "http://192.168.43.1:" + port + "/video";
         AUDIO_PREFIX = "http://192.168.43.1:" + port + "/audio";
-        DOCUMENT_PREFIX = "http://192.168.43.1:" + port + "/document";
         STORAGE_DOWNLOAD_PREFIX = "http://192.168.43.1:" + port + "/sdownload";
     }
 
@@ -268,7 +267,7 @@ public class WebTransferHtmlHandler implements ResUriHandler {
 
             MediaCenter.FileClassify fileType = fileInfo.getFileType();
             if (MediaCenter.isApkFileType(fileType)) {
-                temp = temp.replaceAll("\\{file_avatar\\}", APK_PREFIX + fileInfo.getFilePath());
+                temp = temp.replaceAll("\\{file_avatar\\}", STORAGE_APK_PREFIX + fileInfo.getFilePath());
                 temp = temp.replaceAll("\\{file_width\\}", "100%");
                 temp = temp.replaceAll("\\{file_height\\}", "100%");
             } else if (MediaCenter.isImageFileType(fileType)) {
