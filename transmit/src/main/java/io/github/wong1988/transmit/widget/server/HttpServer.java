@@ -11,6 +11,13 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import io.github.wong1988.transmit.widget.server.handler.AssetsImageResUriHandler;
+import io.github.wong1988.transmit.widget.server.handler.StorageApkImageResUriHandler;
+import io.github.wong1988.transmit.widget.server.handler.StorageAudioImageResUriHandler;
+import io.github.wong1988.transmit.widget.server.handler.StorageDownloadResUriHandler;
+import io.github.wong1988.transmit.widget.server.handler.StorageImageResUriHandler;
+import io.github.wong1988.transmit.widget.server.handler.StorageVideoImageResUriHandler;
+
 /**
  *
  */
@@ -43,6 +50,13 @@ public class HttpServer {
 
     public HttpServer(int port) {
         this.mPort = port;
+
+        addResUriHandler(new AssetsImageResUriHandler());
+        addResUriHandler(new StorageApkImageResUriHandler());
+        addResUriHandler(new StorageAudioImageResUriHandler());
+        addResUriHandler(new StorageDownloadResUriHandler());
+        addResUriHandler(new StorageImageResUriHandler());
+        addResUriHandler(new StorageVideoImageResUriHandler());
     }
 
     /**
