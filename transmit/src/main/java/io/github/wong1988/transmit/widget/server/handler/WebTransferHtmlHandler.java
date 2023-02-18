@@ -59,15 +59,15 @@ public class WebTransferHtmlHandler implements ResUriHandler {
             files = new ArrayList<>();
         this.mFiles = files;
 
-        IMAGE_ERROR = "http://192.168.43.1:" + port + "/assets/thumbnail_error.png";
-        TRANSFER_LOGO = "http://192.168.43.1:" + port + "/assets/" + logo;
-        APK_LOGO = "http://192.168.43.1:" + port + "/assets/apk_logo";
-        AUDIO_LOGO = "http://192.168.43.1:" + port + "/assets/audio_logo";
-        PDF_LOGO = "http://192.168.43.1:" + port + "/assets/pdf_logo";
-        WORD_LOGO = "http://192.168.43.1:" + port + "/assets/word_logo";
-        EXCEL_LOGO = "http://192.168.43.1:" + port + "/assets/excel_logo";
-        POWER_POINT_LOGO = "http://192.168.43.1:" + port + "/assets/ppt_logo";
-        TXT_LOGO = "http://192.168.43.1:" + port + "/assets/txt_logo";
+        IMAGE_ERROR = "http://192.168.43.1:" + port + "/aimg/thumbnail_error.png";
+        TRANSFER_LOGO = "http://192.168.43.1:" + port + "/aimg/" + logo;
+        APK_LOGO = "http://192.168.43.1:" + port + "/aimg/apk_logo";
+        AUDIO_LOGO = "http://192.168.43.1:" + port + "/aimg/audio_logo";
+        PDF_LOGO = "http://192.168.43.1:" + port + "/aimg/pdf_logo";
+        WORD_LOGO = "http://192.168.43.1:" + port + "/aimg/word_logo";
+        EXCEL_LOGO = "http://192.168.43.1:" + port + "/aimg/excel_logo";
+        POWER_POINT_LOGO = "http://192.168.43.1:" + port + "/aimg/ppt_logo";
+        TXT_LOGO = "http://192.168.43.1:" + port + "/aimg/txt_logo";
 
 
         APK_PREFIX = "http://192.168.43.1:" + port + "/apk";
