@@ -12,7 +12,10 @@ import java.net.URLDecoder;
 import io.github.wong1988.transmit.widget.server.HttpRequest;
 import io.github.wong1988.transmit.widget.server.ResUriHandler;
 
-public class DownloadResUriHandler implements ResUriHandler {
+/**
+ * 内部存储文件下载
+ */
+public class StorageDownloadResUriHandler implements ResUriHandler {
 
     public static final String DOWNLOAD_PREFIX = "/sdownload";
 
