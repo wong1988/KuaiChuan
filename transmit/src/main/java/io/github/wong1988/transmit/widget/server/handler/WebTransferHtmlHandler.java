@@ -27,6 +27,7 @@ public class WebTransferHtmlHandler implements ResUriHandler {
     // 默认
     public static String IMAGE_ERROR;
     public static String APK_ERROR;
+    public static String MUSIC_ERROR;
     public static String TRANSFER_LOGO;
     public static String APK_LOGO;
     public static String AUDIO_LOGO;
@@ -61,6 +62,7 @@ public class WebTransferHtmlHandler implements ResUriHandler {
 
         IMAGE_ERROR = "thumbnail_error.png";
         APK_ERROR = "apk_logo.png";
+        MUSIC_ERROR = "audio_logo.png";
         TRANSFER_LOGO = "http://192.168.43.1:" + port + "/aimg/" + logo;
         APK_LOGO = "http://192.168.43.1:" + port + "/aimg/apk_logo";
         AUDIO_LOGO = "http://192.168.43.1:" + port + "/aimg/audio_logo";
