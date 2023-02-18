@@ -188,10 +188,10 @@ public class WebTransferHtmlHandler implements ResUriHandler {
         }
 
         String apkHtml = convertClassifyTemplateHtml(apkFiles, "应用");
-        String imageHtml = convertClassifyTemplateHtml(apkFiles, "图片");
-        String videoHtml = convertClassifyTemplateHtml(apkFiles, "视频");
-        String audioHtml = convertClassifyTemplateHtml(apkFiles, "音乐");
-        String documentHtml = convertClassifyTemplateHtml(apkFiles, "文档");
+        String imageHtml = convertClassifyTemplateHtml(imgFiles, "图片");
+        String videoHtml = convertClassifyTemplateHtml(videoFiles, "视频");
+        String audioHtml = convertClassifyTemplateHtml(audioFiles, "音乐");
+        String documentHtml = convertClassifyTemplateHtml(documentFiles, "文档");
 
         allFileListInfoHtmlBuilder.append(apkHtml);
         allFileListInfoHtmlBuilder.append(imageHtml);
