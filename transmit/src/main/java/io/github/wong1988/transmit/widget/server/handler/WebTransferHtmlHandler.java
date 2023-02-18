@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.text.TextUtils;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -249,8 +248,8 @@ public class WebTransferHtmlHandler implements ResUriHandler {
 
         try {
             // 分类下文件列表每个item信息
-            fileInfoHtml = htmlFile2String(AndroidKit.getInstance().getAppContext().openFileInput("file.template"));
-        } catch (FileNotFoundException e) {
+            fileInfoHtml = htmlFile2String(AndroidKit.getInstance().getAppContext().getAssets().open("file.template"));
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
