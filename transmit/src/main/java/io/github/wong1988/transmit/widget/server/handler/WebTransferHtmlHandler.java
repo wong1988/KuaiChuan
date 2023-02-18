@@ -39,8 +39,8 @@ public class WebTransferHtmlHandler implements ResUriHandler {
     // 预览图的前缀类型 + aimg（资源图片）
     public static String STORAGE_APK_PREFIX;
     public static String STORAGE_IMAGE_PREFIX;
-    public static String VIDEO_PREFIX;
-    public static String AUDIO_PREFIX;
+    public static String STORAGE_VIDEO_PREFIX;
+    public static String STORAGE_AUDIO_PREFIX;
     // 下载地址的前缀就此一种
     public static String STORAGE_DOWNLOAD_PREFIX;
 
@@ -72,8 +72,8 @@ public class WebTransferHtmlHandler implements ResUriHandler {
 
         STORAGE_APK_PREFIX = "http://192.168.43.1:" + port + "/sapk";
         STORAGE_IMAGE_PREFIX = "http://192.168.43.1:" + port + "/simg";
-        VIDEO_PREFIX = "http://192.168.43.1:" + port + "/video";
-        AUDIO_PREFIX = "http://192.168.43.1:" + port + "/audio";
+        STORAGE_VIDEO_PREFIX = "http://192.168.43.1:" + port + "/svideo";
+        STORAGE_AUDIO_PREFIX = "http://192.168.43.1:" + port + "/saudio";
         STORAGE_DOWNLOAD_PREFIX = "http://192.168.43.1:" + port + "/sdownload";
     }
 
@@ -275,11 +275,11 @@ public class WebTransferHtmlHandler implements ResUriHandler {
                 temp = temp.replaceAll("\\{file_width\\}", fileInfo.getHeight() > fileInfo.getWidth() ? "100%" : "auto");
                 temp = temp.replaceAll("\\{file_height\\}", fileInfo.getHeight() > fileInfo.getWidth() ? "auto" : "100%");
             } else if (MediaCenter.isVideoFileType(fileType)) {
-                temp = temp.replaceAll("\\{file_avatar\\}", VIDEO_PREFIX + fileInfo.getFilePath());
+                temp = temp.replaceAll("\\{file_avatar\\}", STORAGE_VIDEO_PREFIX + fileInfo.getFilePath());
                 temp = temp.replaceAll("\\{file_width\\}", fileInfo.getHeight() > fileInfo.getWidth() ? "100%" : "auto");
                 temp = temp.replaceAll("\\{file_height\\}", fileInfo.getHeight() > fileInfo.getWidth() ? "auto" : "100%");
             } else if (MediaCenter.isAudioFileType(fileType)) {
-                temp = temp.replaceAll("\\{file_avatar\\}", AUDIO_PREFIX + fileInfo.getFilePath());
+                temp = temp.replaceAll("\\{file_avatar\\}", STORAGE_AUDIO_PREFIX + fileInfo.getFilePath());
                 temp = temp.replaceAll("\\{file_width\\}", "100%");
                 temp = temp.replaceAll("\\{file_height\\}", "100%");
             } else if (MediaCenter.isPdfFileType(fileType)) {
