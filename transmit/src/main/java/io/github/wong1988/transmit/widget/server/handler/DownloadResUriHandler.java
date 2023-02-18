@@ -14,7 +14,7 @@ import io.github.wong1988.transmit.widget.server.ResUriHandler;
 
 public class DownloadResUriHandler implements ResUriHandler {
 
-    public static final String DOWNLOAD_PREFIX = "/download";
+    public static final String DOWNLOAD_PREFIX = "/sdownload";
 
     @Override
     public boolean matches(String uri) {
