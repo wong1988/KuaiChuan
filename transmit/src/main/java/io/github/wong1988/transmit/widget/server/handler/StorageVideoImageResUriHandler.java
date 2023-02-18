@@ -93,7 +93,7 @@ public class StorageVideoImageResUriHandler implements ResUriHandler {
 
             if (loadNormalApkImage) {
                 // 图片预览失败显示默认的apk图
-                error = AndroidKit.getInstance().getAppContext().getAssets().open(WebTransferHtmlHandler.APK_LOGO);
+                error = AndroidKit.getInstance().getAppContext().getAssets().open(WebTransferHtmlHandler.IMAGE_ERROR);
                 printStream.println("Content-Length:" + error.available());
                 printStream.println("Content-Type:application/octet-stream");
                 printStream.println();
