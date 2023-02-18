@@ -17,20 +17,20 @@ import io.github.wong1988.transmit.widget.server.ResUriHandler;
  */
 public class StorageDownloadResUriHandler implements ResUriHandler {
 
-    public static final String DOWNLOAD_PREFIX = "/sdownload";
+    public static final String STORAGE_DOWNLOAD_PREFIX = "/sdownload";
 
     @Override
     public boolean matches(String uri) {
-        return uri.startsWith(DOWNLOAD_PREFIX);
+        return uri.startsWith(STORAGE_DOWNLOAD_PREFIX);
     }
 
     @Override
     public void handler(HttpRequest request) {
         String uri = request.getUri();
-        int indexOf = uri.indexOf(DOWNLOAD_PREFIX);
+        int indexOf = uri.indexOf(STORAGE_DOWNLOAD_PREFIX);
         String path = "";
         if (indexOf >= 0) {
-            indexOf += DOWNLOAD_PREFIX.length();
+            indexOf += STORAGE_DOWNLOAD_PREFIX.length();
             path = uri.substring(indexOf);
         }
 
