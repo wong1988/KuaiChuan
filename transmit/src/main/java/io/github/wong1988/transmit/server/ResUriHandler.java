@@ -1,4 +1,4 @@
-package io.github.wong1988.transmit.widget.server;
+package io.github.wong1988.transmit.server;
 
 /**
  * 资源地址处理器

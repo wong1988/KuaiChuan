@@ -1,36 +1,36 @@
-package io.github.wong1988.transmit.widget.server.handler;
+package io.github.wong1988.transmit.server.handler;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 import java.net.URLDecoder;
 
-import io.github.wong1988.kit.AndroidKit;
-import io.github.wong1988.transmit.widget.server.HttpRequest;
-import io.github.wong1988.transmit.widget.server.ResUriHandler;
+import io.github.wong1988.transmit.server.HttpRequest;
+import io.github.wong1988.transmit.server.ResUriHandler;
 
 /**
- * assets根目录下的图片文件, 内部使用
+ * 内部存储文件下载
  */
-public class AssetsImageResUriHandler implements ResUriHandler {
+public class StorageDownloadResUriHandler implements ResUriHandler {
 
-    public static final String ASSETS_PREFIX = "/aimg/";
+    public static final String STORAGE_DOWNLOAD_PREFIX = "/sdownload";
 
     @Override
     public boolean matches(String uri) {
-        return uri.startsWith(ASSETS_PREFIX);
+        return uri.startsWith(STORAGE_DOWNLOAD_PREFIX);
     }
 
     @Override
     public void handler(HttpRequest request) {
         String uri = request.getUri();
-        int indexOf = uri.indexOf(ASSETS_PREFIX);
+        int indexOf = uri.indexOf(STORAGE_DOWNLOAD_PREFIX);
         String path = "";
         if (indexOf >= 0) {
-            indexOf += ASSETS_PREFIX.length();
+            indexOf += STORAGE_DOWNLOAD_PREFIX.length();
             path = uri.substring(indexOf);
         }
 
@@ -41,32 +41,32 @@ public class AssetsImageResUriHandler implements ResUriHandler {
             e.printStackTrace();
         }
 
+        File file = new File(path);
+
         Socket socket = request.getSocket();
         // socket的输出流
         OutputStream os = null;
         PrintStream printStream = null;
-        InputStream fis = null;
+        FileInputStream fis = null;
         try {
             os = socket.getOutputStream();
             printStream = new PrintStream(os);
-            printStream.println("HTTP/1.1 200 OK");
-
-            try {
-                // todo 当前项目内部使用的图片资源，默认图（pdf,word这些没有预览图的）
-                fis = AndroidKit.getInstance().getAppContext().getAssets().open(path);
-            } catch (Exception e) {
-                // 地址不对 加载裂开的图
-                fis = AndroidKit.getInstance().getAppContext().getAssets().open(WebTransferHtmlHandler.IMAGE_ERROR);
-            }
-
-            printStream.println("Content-Length:" + fis.available());
-            printStream.println("Content-Type:application/octet-stream");
-            printStream.println();
-            // body
-            int len = 0;
-            byte[] bytes = new byte[2048];
-            while ((len = fis.read(bytes)) != -1) {
-                printStream.write(bytes, 0, len);
+            if (file.exists()) {
+                printStream.println("HTTP/1.1 200 OK");
+                printStream.println("Content-Length:" + file.length());
+                printStream.println("Content-Type:application/octet-stream");
+                printStream.println();
+                // body
+                fis = new FileInputStream(file);
+                int len = 0;
+                byte[] bytes = new byte[2048];
+                while ((len = fis.read(bytes)) != -1) {
+                    printStream.write(bytes, 0, len);
+                }
+            } else {
+                // 文件未找到
+                printStream.println("HTTP/1.1 404 NotFound");
+                printStream.println();
             }
 
             // 输出流最好都flush

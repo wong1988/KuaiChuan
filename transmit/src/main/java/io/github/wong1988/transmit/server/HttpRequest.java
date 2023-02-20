@@ -1,4 +1,4 @@
-package io.github.wong1988.transmit.widget.server;
+package io.github.wong1988.transmit.server;
 
 import java.net.Socket;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package io.github.wong1988.transmit.widget.server.handler;
+package io.github.wong1988.transmit.server.handler;
 
 import android.annotation.SuppressLint;
 import android.text.TextUtils;
@@ -16,8 +16,8 @@ import io.github.wong1988.kit.AndroidKit;
 import io.github.wong1988.kit.entity.FileInfo;
 import io.github.wong1988.kit.utils.AppUtils;
 import io.github.wong1988.media.MediaCenter;
-import io.github.wong1988.transmit.widget.server.HttpRequest;
-import io.github.wong1988.transmit.widget.server.ResUriHandler;
+import io.github.wong1988.transmit.server.HttpRequest;
+import io.github.wong1988.transmit.server.ResUriHandler;
 
 /**
  * 网传页处理器

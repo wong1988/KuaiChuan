@@ -1,36 +1,38 @@
-package io.github.wong1988.transmit.widget.server.handler;
+package io.github.wong1988.transmit.server.handler;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 import java.net.URLDecoder;
 
-import io.github.wong1988.transmit.widget.server.HttpRequest;
-import io.github.wong1988.transmit.widget.server.ResUriHandler;
+import io.github.wong1988.kit.AndroidKit;
+import io.github.wong1988.transmit.server.HttpRequest;
+import io.github.wong1988.transmit.server.ResUriHandler;
 
 /**
- * 内部存储文件下载
+ * 内部存储读取图片
  */
-public class StorageDownloadResUriHandler implements ResUriHandler {
+public class StorageImageResUriHandler implements ResUriHandler {
 
-    public static final String STORAGE_DOWNLOAD_PREFIX = "/sdownload";
+    private static final String STORAGE_IMAGE_PREFIX = "/simg";
 
     @Override
     public boolean matches(String uri) {
-        return uri.startsWith(STORAGE_DOWNLOAD_PREFIX);
+        return uri.startsWith(STORAGE_IMAGE_PREFIX);
     }
 
     @Override
     public void handler(HttpRequest request) {
         String uri = request.getUri();
-        int indexOf = uri.indexOf(STORAGE_DOWNLOAD_PREFIX);
+        int indexOf = uri.indexOf(STORAGE_IMAGE_PREFIX);
         String path = "";
         if (indexOf >= 0) {
-            indexOf += STORAGE_DOWNLOAD_PREFIX.length();
+            indexOf += STORAGE_IMAGE_PREFIX.length();
             path = uri.substring(indexOf);
         }
 
@@ -48,11 +50,13 @@ public class StorageDownloadResUriHandler implements ResUriHandler {
         OutputStream os = null;
         PrintStream printStream = null;
         FileInputStream fis = null;
+        InputStream error = null;
         try {
             os = socket.getOutputStream();
             printStream = new PrintStream(os);
+            printStream.println("HTTP/1.1 200 OK");
+
             if (file.exists()) {
-                printStream.println("HTTP/1.1 200 OK");
                 printStream.println("Content-Length:" + file.length());
                 printStream.println("Content-Type:application/octet-stream");
                 printStream.println();
@@ -64,9 +68,17 @@ public class StorageDownloadResUriHandler implements ResUriHandler {
                     printStream.write(bytes, 0, len);
                 }
             } else {
-                // 文件未找到
-                printStream.println("HTTP/1.1 404 NotFound");
+                // 图片预览失败显示裂开的图
+                error = AndroidKit.getInstance().getAppContext().getAssets().open(WebTransferHtmlHandler.IMAGE_ERROR);
+                printStream.println("Content-Length:" + error.available());
+                printStream.println("Content-Type:application/octet-stream");
                 printStream.println();
+                // body
+                int len = 0;
+                byte[] bytes = new byte[2048];
+                while ((len = error.read(bytes)) != -1) {
+                    printStream.write(bytes, 0, len);
+                }
             }
 
             // 输出流最好都flush
@@ -79,6 +91,14 @@ public class StorageDownloadResUriHandler implements ResUriHandler {
                 try {
                     fis.close();
                     fis = null;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (error != null) {
+                try {
+                    error.close();
+                    error = null;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

@@ -1,8 +1,11 @@
-package io.github.wong1988.transmit.widget.server.handler;
+package io.github.wong1988.transmit.server.handler;
 
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.MediaMetadataRetriever;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -16,28 +19,28 @@ import java.net.Socket;
 import java.net.URLDecoder;
 
 import io.github.wong1988.kit.AndroidKit;
-import io.github.wong1988.transmit.widget.server.HttpRequest;
-import io.github.wong1988.transmit.widget.server.ResUriHandler;
+import io.github.wong1988.transmit.server.HttpRequest;
+import io.github.wong1988.transmit.server.ResUriHandler;
 
 /**
- * 内部存储audio文件的预览图
+ * 内部存储apk文件的预览图
  */
-public class StorageAudioImageResUriHandler implements ResUriHandler {
+public class StorageApkImageResUriHandler implements ResUriHandler {
 
-    private static final String STORAGE_AUDIO_IMAGE_PREFIX = "/saudio";
+    private static final String STORAGE_APK_IMAGE_PREFIX = "/sapk";
 
     @Override
     public boolean matches(String uri) {
-        return uri.startsWith(STORAGE_AUDIO_IMAGE_PREFIX);
+        return uri.startsWith(STORAGE_APK_IMAGE_PREFIX);
     }
 
     @Override
     public void handler(HttpRequest request) {
         String uri = request.getUri();
-        int indexOf = uri.indexOf(STORAGE_AUDIO_IMAGE_PREFIX);
+        int indexOf = uri.indexOf(STORAGE_APK_IMAGE_PREFIX);
         String path = "";
         if (indexOf >= 0) {
-            indexOf += STORAGE_AUDIO_IMAGE_PREFIX.length();
+            indexOf += STORAGE_APK_IMAGE_PREFIX.length();
             path = uri.substring(indexOf);
         }
 
@@ -66,17 +69,18 @@ public class StorageAudioImageResUriHandler implements ResUriHandler {
             boolean loadNormalApkImage = true;
 
             if (file.exists()) {
-                MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-                try {
-                    // 这行也很容易crash
-                    mediaMetadataRetriever.setDataSource(path);
-                    final byte[] coverImage = mediaMetadataRetriever.getEmbeddedPicture();
-                    bitmap = BitmapFactory.decodeByteArray(coverImage, 0, coverImage.length);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                PackageManager pm = AndroidKit.getInstance().getAppContext().getPackageManager();
+                PackageInfo pkgInfo = pm.getPackageArchiveInfo(path, PackageManager.GET_ACTIVITIES);
+                if (pkgInfo != null) {
+                    ApplicationInfo appInfo = pkgInfo.applicationInfo;
+                    /* 必须加这两句，不然下面icon获取是default icon而不是应用包的icon */
+                    appInfo.sourceDir = path;
+                    appInfo.publicSourceDir = path;
+                    /* icon1和icon2其实是一样的 */
+                    Drawable icon2 = appInfo.loadIcon(pm);
 
-                if (bitmap != null) {
+                    BitmapDrawable bd = (BitmapDrawable) icon2;
+                    bitmap = bd.getBitmap();
                     baos = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
                     printStream.println("Content-Length:" + baos.size());
@@ -94,8 +98,8 @@ public class StorageAudioImageResUriHandler implements ResUriHandler {
             }
 
             if (loadNormalApkImage) {
-                // 图片预览失败显示默认的音乐图
-                error = AndroidKit.getInstance().getAppContext().getAssets().open(WebTransferHtmlHandler.MUSIC_ERROR);
+                // 图片预览失败显示默认的apk图
+                error = AndroidKit.getInstance().getAppContext().getAssets().open(WebTransferHtmlHandler.APK_ERROR);
                 printStream.println("Content-Length:" + error.available());
                 printStream.println("Content-Type:application/octet-stream");
                 printStream.println();
@@ -141,8 +145,7 @@ public class StorageAudioImageResUriHandler implements ResUriHandler {
                     e.printStackTrace();
                 }
             }
-            if (bitmap != null)
-                bitmap.recycle();
+            // bitmap不能回收(因为drawable转的)，刷新后就没了
         }
     }
 

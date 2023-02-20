@@ -1,4 +1,4 @@
-package io.github.wong1988.transmit.widget.server;
+package io.github.wong1988.transmit.server;
 
 import android.util.Log;
 
@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import io.github.wong1988.transmit.widget.server.handler.AssetsImageResUriHandler;
-import io.github.wong1988.transmit.widget.server.handler.StorageApkImageResUriHandler;
-import io.github.wong1988.transmit.widget.server.handler.StorageAudioImageResUriHandler;
-import io.github.wong1988.transmit.widget.server.handler.StorageDownloadResUriHandler;
-import io.github.wong1988.transmit.widget.server.handler.StorageImageResUriHandler;
-import io.github.wong1988.transmit.widget.server.handler.StorageVideoImageResUriHandler;
+import io.github.wong1988.transmit.server.handler.AssetsImageResUriHandler;
+import io.github.wong1988.transmit.server.handler.StorageApkImageResUriHandler;
+import io.github.wong1988.transmit.server.handler.StorageAudioImageResUriHandler;
+import io.github.wong1988.transmit.server.handler.StorageDownloadResUriHandler;
+import io.github.wong1988.transmit.server.handler.StorageImageResUriHandler;
+import io.github.wong1988.transmit.server.handler.StorageVideoImageResUriHandler;
 
 /**
  *

@@ -1,6 +1,7 @@
-package io.github.wong1988.transmit.widget.server.handler;
+package io.github.wong1988.transmit.server.handler;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 
 import java.io.ByteArrayInputStream;
@@ -15,28 +16,28 @@ import java.net.Socket;
 import java.net.URLDecoder;
 
 import io.github.wong1988.kit.AndroidKit;
-import io.github.wong1988.transmit.widget.server.HttpRequest;
-import io.github.wong1988.transmit.widget.server.ResUriHandler;
+import io.github.wong1988.transmit.server.HttpRequest;
+import io.github.wong1988.transmit.server.ResUriHandler;
 
 /**
- * 内部存储apk文件的预览图
+ * 内部存储audio文件的预览图
  */
-public class StorageVideoImageResUriHandler implements ResUriHandler {
+public class StorageAudioImageResUriHandler implements ResUriHandler {
 
-    private static final String STORAGE_VIDEO_IMAGE_PREFIX = "/svideo";
+    private static final String STORAGE_AUDIO_IMAGE_PREFIX = "/saudio";
 
     @Override
     public boolean matches(String uri) {
-        return uri.startsWith(STORAGE_VIDEO_IMAGE_PREFIX);
+        return uri.startsWith(STORAGE_AUDIO_IMAGE_PREFIX);
     }
 
     @Override
     public void handler(HttpRequest request) {
         String uri = request.getUri();
-        int indexOf = uri.indexOf(STORAGE_VIDEO_IMAGE_PREFIX);
+        int indexOf = uri.indexOf(STORAGE_AUDIO_IMAGE_PREFIX);
         String path = "";
         if (indexOf >= 0) {
-            indexOf += STORAGE_VIDEO_IMAGE_PREFIX.length();
+            indexOf += STORAGE_AUDIO_IMAGE_PREFIX.length();
             path = uri.substring(indexOf);
         }
 
@@ -69,7 +70,8 @@ public class StorageVideoImageResUriHandler implements ResUriHandler {
                 try {
                     // 这行也很容易crash
                     mediaMetadataRetriever.setDataSource(path);
-                    bitmap = mediaMetadataRetriever.getFrameAtTime();
+                    final byte[] coverImage = mediaMetadataRetriever.getEmbeddedPicture();
+                    bitmap = BitmapFactory.decodeByteArray(coverImage, 0, coverImage.length);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -92,8 +94,8 @@ public class StorageVideoImageResUriHandler implements ResUriHandler {
             }
 
             if (loadNormalApkImage) {
-                // 图片预览失败显示默认的apk图
-                error = AndroidKit.getInstance().getAppContext().getAssets().open(WebTransferHtmlHandler.IMAGE_ERROR);
+                // 图片预览失败显示默认的音乐图
+                error = AndroidKit.getInstance().getAppContext().getAssets().open(WebTransferHtmlHandler.MUSIC_ERROR);
                 printStream.println("Content-Length:" + error.available());
                 printStream.println("Content-Type:application/octet-stream");
                 printStream.println();
