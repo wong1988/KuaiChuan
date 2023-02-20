@@ -106,7 +106,7 @@ public abstract class BaseListFragment<BEAN, ADAPTER extends BaseListAdapter<BEA
 
                 } else {
 
-                    if (mAdapter != null && mAdapter.isEnableLoadMore())
+                    if (mAdapter != null)
                         mAdapter.setLoadState(LoadState.LOADING);
 
                     isCanRequest = false;
@@ -124,6 +124,7 @@ public abstract class BaseListFragment<BEAN, ADAPTER extends BaseListAdapter<BEA
             mRv.addItemDecoration(initItemDecoration());
         }
 
+        mAdapter.setLoadState(LoadState.LOADING);
         initListener();
     }
 
@@ -154,7 +155,7 @@ public abstract class BaseListFragment<BEAN, ADAPTER extends BaseListAdapter<BEA
 
         isCanRequest = true;
 
-        if (mAdapter != null && mAdapter.isEnableLoadMore())
+        if (mAdapter != null)
             mAdapter.setLoadState(LoadState.LOAD_COMPLETE);
 
     }
@@ -169,7 +170,7 @@ public abstract class BaseListFragment<BEAN, ADAPTER extends BaseListAdapter<BEA
         if (currentPage >= INITIAL_PAGE_NUMBER)
             currentPage--;
 
-        if (mAdapter != null && mAdapter.isEnableLoadMore())
+        if (mAdapter != null)
             mAdapter.setLoadState(LoadState.LOAD_ERROR);
 
     }
@@ -184,7 +185,7 @@ public abstract class BaseListFragment<BEAN, ADAPTER extends BaseListAdapter<BEA
         if (currentPage >= INITIAL_PAGE_NUMBER)
             currentPage--;
 
-        if (mAdapter != null && mAdapter.isEnableLoadMore())
+        if (mAdapter != null)
             mAdapter.setLoadState(LoadState.LOAD_ERROR);
 
         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
@@ -220,6 +221,8 @@ public abstract class BaseListFragment<BEAN, ADAPTER extends BaseListAdapter<BEA
     // 添加不分页数据的方法
     protected void addNoPagingData(List<BEAN> list) {
         addData(startPagerNumber() == PagerStartType.ZERO ? 0 : 1, list, 1);
+        if (mAdapter != null && mAdapter.getAttachDataSize() > 0)
+            mAdapter.setLoadState(LoadState.LOAD_END);
     }
 
     protected void failNeedTodoNoPaging() {
