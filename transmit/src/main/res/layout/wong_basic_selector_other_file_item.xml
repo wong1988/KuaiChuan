@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="65dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingLeft="20dp">
+
+    <FrameLayout
+        android:id="@+id/wong_fl"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:id="@+id/wong_img"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop" />
+
+    </FrameLayout>
+
+    <CheckBox
+        android:id="@+id/wong_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingRight="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="10dp"
+        android:layout_toStartOf="@id/wong_cb"
+        android:layout_toEndOf="@id/wong_fl"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/wong_rv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:textColor="#282828"
+            android:textSize="15dp"
+            tools:text="鬼吹灯" />
+
+        <TextView
+            android:id="@+id/wong_rv2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:lines="1"
+            android:textSize="13dp"
+            tools:text="类型：txt" />
+    </LinearLayout>
+
+</RelativeLayout>
