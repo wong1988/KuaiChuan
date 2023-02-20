@@ -41,7 +41,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/wong_rv1"
+            android:id="@+id/wong_tv1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
@@ -52,7 +52,7 @@
             tools:text="鬼吹灯" />
 
         <TextView
-            android:id="@+id/wong_rv2"
+            android:id="@+id/wong_tv2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
