@@ -15,7 +15,7 @@
         android:layout_centerVertical="true">
 
         <ImageView
-            android:id="@+id/wong_img"
+            android:id="@+id/wong_pic"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
