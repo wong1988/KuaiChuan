@@ -12,8 +12,8 @@
 
     <io.github.wong1988.kit.widget.SquareImageView
         android:id="@+id/wong_pic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop" />
 
