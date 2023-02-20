@@ -2,6 +2,7 @@ package io.github.wong1988.transmit.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.view.View;
 
 import com.bumptech.glide.Glide;
 
@@ -10,6 +11,7 @@ import java.io.File;
 import io.github.wong1988.adapter.SimpleListAdapter;
 import io.github.wong1988.adapter.holder.RecyclerViewHolder;
 import io.github.wong1988.kit.entity.FileInfo;
+import io.github.wong1988.media.MediaCenter;
 import io.github.wong1988.transmit.R;
 
 public class MediaAdapter extends SimpleListAdapter<FileInfo> {
@@ -25,5 +27,13 @@ public class MediaAdapter extends SimpleListAdapter<FileInfo> {
         Glide.with(getAttachContext())
                 .load(new File(fileInfo.getFilePath()))
                 .into(holder.getImageView(R.id.wong_pic));
+
+        holder.setOnClickListener(R.id.wong_enlarge, new View.OnClickListener() {
+            @SuppressLint("MissingPermission")
+            @Override
+            public void onClick(View v) {
+                MediaCenter.openFile(getAttachContext(), fileInfo.getFilePath());
+            }
+        });
     }
 }
