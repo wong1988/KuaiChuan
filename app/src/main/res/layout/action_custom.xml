@@ -6,12 +6,24 @@
     android:gravity="right">
 
     <TextView
+        android:id="@+id/action_clean"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:padding="4dp"
+        android:text="清除"
+        android:textColor="#ffffff"
+        android:textSize="14dp"
+        android:visibility="gone" />
+
+    <TextView
         android:id="@+id/action_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
         android:text="確定"
         android:textColor="#ffffff"
-        android:textSize="14dp" />
+        android:textSize="14dp"
+        android:visibility="gone" />
 
 </LinearLayout>
