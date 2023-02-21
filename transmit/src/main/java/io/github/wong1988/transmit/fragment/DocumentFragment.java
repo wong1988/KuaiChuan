@@ -27,7 +27,7 @@ public class DocumentFragment extends BaseListFragment<FileInfo, OtherFileAdapte
 
     private RecyclerView rv;
 
-    private BasicFileSelector.SelectorListener2 listener;
+    private final BasicFileSelector.SelectorListener2 listener;
 
     public DocumentFragment(BasicFileSelector.SelectorListener2 listener) {
         this.listener = listener;
