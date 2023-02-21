@@ -28,7 +28,7 @@ public class ApkFragment extends BaseListFragment<FileInfo, OtherFileAdapter> {
 
     private RecyclerView rv;
 
-    private BasicFileSelector.SelectorListener2 listener;
+    private final BasicFileSelector.SelectorListener2 listener;
 
     public ApkFragment(BasicFileSelector.SelectorListener2 listener) {
         this.listener = listener;
