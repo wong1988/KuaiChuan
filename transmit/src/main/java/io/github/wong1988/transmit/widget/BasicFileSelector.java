@@ -7,10 +7,28 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager.widget.ViewPager;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import io.github.wong1988.adapter.ViewPagerLazyAdapter;
+import io.github.wong1988.kit.entity.FileInfo;
 import io.github.wong1988.transmit.R;
+import io.github.wong1988.transmit.fragment.ApkFragment;
+import io.github.wong1988.transmit.fragment.DocumentFragment;
+import io.github.wong1988.transmit.fragment.ImageFragment;
+import io.github.wong1988.transmit.fragment.MusicFragment;
+import io.github.wong1988.transmit.fragment.VideoFragment;
 
 public class BasicFileSelector extends FrameLayout {
+
+    private SelectorListener listener;
+
+    private final List<FileInfo> infoList = new ArrayList<>();
 
     public BasicFileSelector(@NonNull Context context) {
         this(context, null);
@@ -25,5 +43,47 @@ public class BasicFileSelector extends FrameLayout {
 
         LayoutInflater.from(context).inflate(R.layout.wong_basic_file_selector, this, true);
 
+        TabLayout2 tab2 = findViewById(R.id.wong_tb2);
+        ViewPager vp = findViewById(R.id.wong_vp);
+
+
+        SelectorListener2 innerListener = new SelectorListener2() {
+
+            @Override
+            public void add(FileInfo file) {
+                infoList.add(file);
+                if (listener != null)
+                    listener.select(infoList);
+            }
+
+            @Override
+            public void remove(FileInfo file) {
+                infoList.remove(file);
+                if (listener != null)
+                    listener.select(infoList);
+            }
+        };
+
+        // 绑定viewpager 和 tabLayout
+        List<Fragment> fragments = Arrays.asList(new ApkFragment(innerListener), new ImageFragment(innerListener), new VideoFragment(innerListener), new MusicFragment(innerListener), new DocumentFragment(innerListener));
+        vp.setAdapter(new ViewPagerLazyAdapter(((FragmentActivity) context).getSupportFragmentManager(), fragments, Arrays.asList("应用", "图片", "视频", "音频", "文档")));
+        vp.setOffscreenPageLimit(fragments.size());
+        tab2.setupWithViewPager(vp);
+
+    }
+
+    public void setListener(SelectorListener listener) {
+        this.listener = listener;
+    }
+
+    public interface SelectorListener {
+        void select(List<FileInfo> files);
+    }
+
+
+    public interface SelectorListener2 {
+        void add(FileInfo file);
+
+        void remove(FileInfo file);
     }
 }
