@@ -65,8 +65,8 @@ public class BasicFileSelector extends FrameLayout {
         };
 
         // 绑定viewpager 和 tabLayout
-        List<Fragment> fragments = Arrays.asList(new ApkFragment(innerListener), new ImageFragment(innerListener), new VideoFragment(innerListener), new MusicFragment(innerListener), new DocumentFragment(innerListener));
-        vp.setAdapter(new ViewPagerLazyAdapter(((FragmentActivity) context).getSupportFragmentManager(), fragments, Arrays.asList("应用", "图片", "视频", "音频", "文档")));
+        List<Fragment> fragments = Arrays.asList(new ImageFragment(innerListener), new VideoFragment(innerListener), new MusicFragment(innerListener), new DocumentFragment(innerListener), new ApkFragment(innerListener));
+        vp.setAdapter(new ViewPagerLazyAdapter(((FragmentActivity) context).getSupportFragmentManager(), fragments, Arrays.asList("图片", "视频", "音频", "文档", "应用")));
         vp.setOffscreenPageLimit(fragments.size());
         tab2.setupWithViewPager(vp);
 
