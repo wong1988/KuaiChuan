@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">X快傳</string>
+    <string name="tip_web_transfer_first_tip">
+        \n
+        第1步 \n\n
+        打开热点并请好友连入我的热点 \n
+    </string>
+    <string name="tip_web_transfer_second_tip">
+        \n
+        第2步 \n\n
+        请好友在浏览器输入以下网址 \n
+        http://192.168.43.1:3888 \n
+        或者使用浏览器扫描二维码
+    </string>
 </resources>
