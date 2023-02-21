@@ -38,6 +38,8 @@ public class OtherFileAdapter extends SimpleListAdapter<FileInfo> {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 fileInfo.setExtra(Boolean.toString(b));
+                if (onCheckedChangeListener != null)
+                    onCheckedChangeListener.onCheckedChanged(fileInfo, b);
             }
         });
 
@@ -96,5 +98,15 @@ public class OtherFileAdapter extends SimpleListAdapter<FileInfo> {
             }
         }
 
+    }
+
+    private OnCheckedChangeListener onCheckedChangeListener;
+
+    public void setOnCheckedChangeListener(OnCheckedChangeListener onCheckedChangeListener) {
+        this.onCheckedChangeListener = onCheckedChangeListener;
+    }
+
+    public interface OnCheckedChangeListener {
+        void onCheckedChanged(FileInfo info, boolean b);
     }
 }
