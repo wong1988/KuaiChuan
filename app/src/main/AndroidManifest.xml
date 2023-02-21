@@ -42,7 +42,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|uiMode"
             android:exported="true"
             android:screenOrientation="portrait" />
-        
+
     </application>
 
 </manifest>
