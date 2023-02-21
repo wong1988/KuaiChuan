@@ -72,6 +72,26 @@ public class BasicFileSelector extends FrameLayout {
 
     }
 
+    public void reset() {
+        for (FileInfo fileInfo : infoList) {
+            fileInfo.setExtra("");
+        }
+        infoList.clear();
+        List<Fragment> fragments = ((FragmentActivity) getContext()).getSupportFragmentManager().getFragments();
+        for (Fragment fragment : fragments) {
+            if (fragment instanceof ImageFragment)
+                ((ImageFragment) fragment).notifyDataSetChanged();
+            else if (fragment instanceof VideoFragment)
+                ((VideoFragment) fragment).notifyDataSetChanged();
+            else if (fragment instanceof MusicFragment)
+                ((MusicFragment) fragment).notifyDataSetChanged();
+            else if (fragment instanceof DocumentFragment)
+                ((DocumentFragment) fragment).notifyDataSetChanged();
+            else if (fragment instanceof ApkFragment)
+                ((ApkFragment) fragment).notifyDataSetChanged();
+        }
+    }
+
     public void setListener(SelectorListener listener) {
         this.listener = listener;
     }
