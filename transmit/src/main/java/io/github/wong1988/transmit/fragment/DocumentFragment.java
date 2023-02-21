@@ -71,10 +71,10 @@ public class DocumentFragment extends BaseListFragment<FileInfo, OtherFileAdapte
     @Override
     protected void initListener() {
         mAdapter.setOnItemClickListener(new OnItemClickListener<FileInfo>() {
+            @SuppressLint("MissingPermission")
             @Override
             public void onClick(FileInfo fileInfo, int position, View view) {
-                fileInfo.setExtra("true".equals(fileInfo.getExtra()) ? "" : "true");
-                mAdapter.notifyItemChanged(mAdapter.getRealPosition(position));
+                MediaCenter.openFile(getActivity(), fileInfo.getFilePath());
             }
         });
     }
