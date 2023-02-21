@@ -28,7 +28,6 @@ public class TabLayout2 extends TabLayout {
     public TabLayout2(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-
         // 指示器不充满，仅占文字长度
         setTabIndicatorFullWidth(false);
         // 设置tab模式为滚动
@@ -41,7 +40,7 @@ public class TabLayout2 extends TabLayout {
         setTabIndicatorAnimationMode(INDICATOR_ANIMATION_MODE_ELASTIC);
 
         // 当前两项成对使用
-        setSelectedTabIndicator(R.drawable.wong_transmit_tab_lline);
+        setSelectedTabIndicator(R.drawable.wong_transmit_tab_line);
         setSelectedTabIndicatorHeight((int) UiUtils.dip2px(2));
         // 还需要在设置一下颜色
         setSelectedTabIndicatorColor(Color.parseColor("#0950de"));
