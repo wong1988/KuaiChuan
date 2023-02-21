@@ -11,12 +11,14 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import io.github.wong1988.kit.entity.FileInfo;
 import io.github.wong1988.transmit.server.handler.AssetsImageResUriHandler;
 import io.github.wong1988.transmit.server.handler.StorageApkImageResUriHandler;
 import io.github.wong1988.transmit.server.handler.StorageAudioImageResUriHandler;
 import io.github.wong1988.transmit.server.handler.StorageDownloadResUriHandler;
 import io.github.wong1988.transmit.server.handler.StorageImageResUriHandler;
 import io.github.wong1988.transmit.server.handler.StorageVideoImageResUriHandler;
+import io.github.wong1988.transmit.server.handler.WebTransferHtmlHandler;
 
 /**
  *
@@ -62,6 +64,18 @@ public class HttpServer {
     /**
      * 启动服务器
      */
+    public void startServer(List<FileInfo> files) {
+        for (ResUriHandler resUriHandler : mResUriHandlerList) {
+            if (resUriHandler instanceof WebTransferHtmlHandler) {
+                resUriHandler.destroy();
+                mResUriHandlerList.remove(resUriHandler);
+            }
+        }
+        addResUriHandler(new WebTransferHtmlHandler(mPort, files));
+        startServer();
+    }
+
+
     public void startServer() {
         mIsEnable = true;
         mThreadPool.submit(new Runnable() {
