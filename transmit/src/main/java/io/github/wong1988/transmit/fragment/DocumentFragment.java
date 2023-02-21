@@ -28,7 +28,7 @@ public class DocumentFragment extends BaseListFragment<FileInfo, OtherFileAdapte
 
     @Override
     protected int layoutResId() {
-        return R.layout.wong_fragment_transmit_preview;
+        return R.layout.wong_fragment_transmit_other;
     }
 
     @Override

@@ -2,7 +2,6 @@ package io.github.wong1988.transmit.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.view.View;
 import android.widget.CompoundButton;
 
 import com.bumptech.glide.Glide;
