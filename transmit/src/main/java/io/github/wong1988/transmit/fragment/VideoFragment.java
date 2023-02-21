@@ -20,11 +20,18 @@ import io.github.wong1988.transmit.R;
 import io.github.wong1988.transmit.adapter.MediaAdapter;
 import io.github.wong1988.transmit.base.BaseListFragment;
 import io.github.wong1988.transmit.base.PagerStartType;
+import io.github.wong1988.transmit.widget.BasicFileSelector;
 
 
 public class VideoFragment extends BaseListFragment<FileInfo, MediaAdapter> {
 
     private RecyclerView rv;
+
+    private final BasicFileSelector.SelectorListener2 listener;
+
+    public VideoFragment(BasicFileSelector.SelectorListener2 listener) {
+        this.listener = listener;
+    }
 
     @Override
     protected int layoutResId() {
@@ -73,8 +80,15 @@ public class VideoFragment extends BaseListFragment<FileInfo, MediaAdapter> {
         mAdapter.setOnItemClickListener(new OnItemClickListener<FileInfo>() {
             @Override
             public void onClick(FileInfo fileInfo, int position, View view) {
-                fileInfo.setExtra("true".equals(fileInfo.getExtra()) ? "" : "true");
+                String extra = "true".equals(fileInfo.getExtra()) ? "" : "true";
+                fileInfo.setExtra(extra);
                 mAdapter.notifyItemChanged(mAdapter.getRealPosition(position));
+                if (listener != null) {
+                    if ("true".equals(extra))
+                        listener.add(fileInfo);
+                    else
+                        listener.remove(fileInfo);
+                }
             }
         });
     }
