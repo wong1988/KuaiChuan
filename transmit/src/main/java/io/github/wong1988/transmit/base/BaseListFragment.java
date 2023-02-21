@@ -256,5 +256,10 @@ public abstract class BaseListFragment<BEAN, ADAPTER extends BaseListAdapter<BEA
 
         requestData(INITIAL_PAGE_NUMBER);
     }
+
+    public void notifyDataSetChanged() {
+        if (mAdapter != null)
+            mAdapter.notifyDataSetChanged();
+    }
 }
 
