@@ -28,7 +28,7 @@ public class VideoFragment extends BaseListFragment<FileInfo, MediaAdapter> {
 
     @Override
     protected int layoutResId() {
-        return R.layout.fragment_video;
+        return R.layout.wong_fragment_transmit_preview;
     }
 
     @Override

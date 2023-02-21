@@ -29,7 +29,7 @@ public class MusicFragment extends BaseListFragment<FileInfo, OtherFileAdapter> 
 
     @Override
     protected int layoutResId() {
-        return R.layout.fragment_music;
+        return R.layout.wong_fragment_transmit_preview;
     }
 
     @Override

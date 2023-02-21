@@ -1,33 +1,34 @@
 package io.github.wong1988.transmit.fragment;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.view.View;
 
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import java.util.List;
 
-import io.github.wong1988.adapter.divider.GridLayoutManagerDivider;
+import io.github.wong1988.adapter.divider.LinearLayoutManagerDivider;
 import io.github.wong1988.adapter.listener.OnItemClickListener;
 import io.github.wong1988.kit.entity.FileInfo;
 import io.github.wong1988.kit.task.FileAsyncTask;
 import io.github.wong1988.kit.utils.FileUtils;
-import io.github.wong1988.kit.utils.UiUtils;
 import io.github.wong1988.media.MediaCenter;
 import io.github.wong1988.transmit.R;
-import io.github.wong1988.transmit.adapter.MediaAdapter;
+import io.github.wong1988.transmit.adapter.OtherFileAdapter;
 import io.github.wong1988.transmit.base.BaseListFragment;
 import io.github.wong1988.transmit.base.PagerStartType;
 
-public class DocumentFragment extends BaseListFragment<FileInfo, MediaAdapter> {
+
+public class DocumentFragment extends BaseListFragment<FileInfo, OtherFileAdapter> {
 
     private RecyclerView rv;
 
     @Override
     protected int layoutResId() {
-        return R.layout.fragment_document;
+        return R.layout.wong_fragment_transmit_preview;
     }
 
     @Override
@@ -54,17 +55,17 @@ public class DocumentFragment extends BaseListFragment<FileInfo, MediaAdapter> {
 
     @Override
     protected RecyclerView.LayoutManager initLayoutManager() {
-        return new GridLayoutManager(getActivity(), 4);
+        return new LinearLayoutManager(getActivity());
     }
 
     @Override
     protected RecyclerView.ItemDecoration initItemDecoration() {
-        return GridLayoutManagerDivider.getVerticalDivider(getResources().getColor(android.R.color.transparent), (int) UiUtils.dip2px(2));
+        return LinearLayoutManagerDivider.getVerticalDivider(Color.parseColor("#f1f1f1"), 2);
     }
 
     @Override
-    protected MediaAdapter initAdapter() {
-        return new MediaAdapter(getActivity());
+    protected OtherFileAdapter initAdapter() {
+        return new OtherFileAdapter(getActivity());
     }
 
     @Override
