@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 if (tv.getVisibility() == View.VISIBLE)
                     Toast.makeText(MainActivity.this, "请确保个人热点已经开启", Toast.LENGTH_SHORT).show();
 
-                server = new HttpServer(3998);
+                server = new HttpServer(3888);
                 server.startServer(infoList);
                 startActivityForResult(new Intent(MainActivity.this, WebTransmitActivity.class), 1000);
             }
