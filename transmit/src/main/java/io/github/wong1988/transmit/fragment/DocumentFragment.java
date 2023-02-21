@@ -20,11 +20,18 @@ import io.github.wong1988.transmit.R;
 import io.github.wong1988.transmit.adapter.OtherFileAdapter;
 import io.github.wong1988.transmit.base.BaseListFragment;
 import io.github.wong1988.transmit.base.PagerStartType;
+import io.github.wong1988.transmit.widget.BasicFileSelector;
 
 
 public class DocumentFragment extends BaseListFragment<FileInfo, OtherFileAdapter> {
 
     private RecyclerView rv;
+
+    private BasicFileSelector.SelectorListener2 listener;
+
+    public DocumentFragment(BasicFileSelector.SelectorListener2 listener) {
+        this.listener = listener;
+    }
 
     @Override
     protected int layoutResId() {
@@ -75,6 +82,17 @@ public class DocumentFragment extends BaseListFragment<FileInfo, OtherFileAdapte
             @Override
             public void onClick(FileInfo fileInfo, int position, View view) {
                 MediaCenter.openFile(getActivity(), fileInfo.getFilePath());
+            }
+        });
+        mAdapter.setOnCheckedChangeListener(new OtherFileAdapter.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(FileInfo info, boolean b) {
+                if (listener != null) {
+                    if (b)
+                        listener.add(info);
+                    else
+                        listener.remove(info);
+                }
             }
         });
     }
