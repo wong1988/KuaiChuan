@@ -2,7 +2,6 @@ package io.github.wong1988.transmit.fragment;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,7 +13,7 @@ import java.util.List;
 import io.github.wong1988.adapter.divider.LinearLayoutManagerDivider;
 import io.github.wong1988.adapter.listener.OnItemClickListener;
 import io.github.wong1988.kit.entity.FileInfo;
-import io.github.wong1988.kit.task.FileAsyncTask;
+import io.github.wong1988.kit.task.QueryMediaStoreAsyncTask;
 import io.github.wong1988.kit.utils.FileUtils;
 import io.github.wong1988.media.MediaCenter;
 import io.github.wong1988.transmit.R;
@@ -102,17 +101,15 @@ public class MusicFragment extends BaseListFragment<FileInfo, OtherFileAdapter> 
     @Override
     protected void requestData(int page) {
 
-        new FileAsyncTask(new FileUtils.FileInfoChanged() {
+        new QueryMediaStoreAsyncTask(new FileUtils.FileInfoChanged() {
             @SuppressLint("MissingPermission")
             @Override
             public void change(FileInfo fileInfo) {
-                try {
-                    mAdapter.notifyItemChanged(fileInfo.getIndex());
-                } catch (Exception e) {
-                    Log.e("error", "change()", e);
-                }
+                int realPosition = mAdapter.getRealPosition(fileInfo);
+                if (realPosition != -1)
+                    mAdapter.notifyItemChanged(realPosition);
             }
-        }, new FileAsyncTask.IFileAsyncTask() {
+        }, new QueryMediaStoreAsyncTask.IFileAsyncTask() {
             @Override
             public void start() {
 

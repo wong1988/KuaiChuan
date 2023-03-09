@@ -13,7 +13,7 @@ import java.util.List;
 import io.github.wong1988.adapter.divider.LinearLayoutManagerDivider;
 import io.github.wong1988.adapter.listener.OnItemClickListener;
 import io.github.wong1988.kit.entity.FileInfo;
-import io.github.wong1988.kit.task.FileAsyncTask;
+import io.github.wong1988.kit.task.QueryMediaStoreAsyncTask;
 import io.github.wong1988.kit.utils.FileUtils;
 import io.github.wong1988.media.MediaCenter;
 import io.github.wong1988.transmit.R;
@@ -101,13 +101,13 @@ public class DocumentFragment extends BaseListFragment<FileInfo, OtherFileAdapte
     @Override
     protected void requestData(int page) {
 
-        new FileAsyncTask(new FileUtils.FileInfoChanged() {
+        new QueryMediaStoreAsyncTask(new FileUtils.FileInfoChanged() {
             @SuppressLint("MissingPermission")
             @Override
             public void change(FileInfo fileInfo) {
 
             }
-        }, new FileAsyncTask.IFileAsyncTask() {
+        }, new QueryMediaStoreAsyncTask.IFileAsyncTask() {
             @Override
             public void start() {
 
